@@ -10,9 +10,9 @@ export class ProductsComponent implements OnInit {
 
   constructor() { }
   title = "Ürün Listesi"
-  products : any[] = [
-    {name:"Laptop",description:"Lorem ipsum dolor sit amet",price:2500,categoryID:1,id:1},
-    {name:"Telefon",description:"Lorem ipsum dolor sit amet",price:3600,categoryID:2,id:2}
+  products : Product[] = [
+    {name:"Laptop",description:"Lorem ipsum dolor sit amet",price:2500,categoryID:1,id:1,imageURL:"https://images.unsplash.com/photo-1515343480029-43cdfe6b6aae?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80"},
+    {name:"Telefon",description:"Lorem ipsum dolor sit amet",price:3600,categoryID:2,id:2,imageURL:"https://images.unsplash.com/photo-1515343480029-43cdfe6b6aae?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80"}
   ]
 
   ngOnInit(): void {
