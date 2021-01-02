@@ -1,23 +1,22 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertifyService } from '../services/alertify.service';
+import { CategoryService } from '../services/category.service';
 import { Category } from './category';
 
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
-  styleUrls: ['./category.component.css']
+  styleUrls: ['./category.component.css'],
+  providers:[CategoryService]
 })
 export class CategoryComponent implements OnInit {
 
-  constructor() { }
-  title="Kategori Listesi";
-  categories : Category[] = [
-    {id:1,name:"Elektronik"},
-    {id:2,name:"Ev Eşyaları"},
-    {id:3,name:"Temizlik Eşyaları"},
-    {id:4,name:"Yemek ve İçecek"},
-  ]
-
+  constructor(private categoryService: CategoryService, private alertifyService: AlertifyService) { }
+  title = "Kategori Listesi";
+  categories: Category[];
   ngOnInit(): void {
+    this.categoryService.getCategories().subscribe(data => {
+      this.categories = data;
+    });
   }
-
 }
