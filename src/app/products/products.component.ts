@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from './product';
-import {AlertifyService} from '../services/alertify.service';
+import { AlertifyService } from '../services/alertify.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-products',
@@ -9,27 +10,20 @@ import {AlertifyService} from '../services/alertify.service';
 })
 export class ProductsComponent implements OnInit {
 
-  constructor(private alertifyService:AlertifyService) { }
+  constructor(private alertifyService: AlertifyService, private http: HttpClient) { }
   title = "Ürün Listesi"
-  filterText  = ""
+  filterText = ""
 
-  products : Product[] = [
-    {name:"Laptop",description:"Lorem ipsum dolor sit amet",price:2500,categoryID:1,id:1,imageURL:"https://images.unsplash.com/photo-1515343480029-43cdfe6b6aae?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80"},
-    {name:"Telefon",description:"Lorem ipsum dolor sit amet",price:3600,categoryID:2,id:2,imageURL:"https://images.unsplash.com/photo-1515343480029-43cdfe6b6aae?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80"},
-    {name:"Dizüstü Bilgisayar",description:"Lorem ipsum dolor sit amet",price:2500,categoryID:1,id:1,imageURL:"https://images.unsplash.com/photo-1515343480029-43cdfe6b6aae?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80"},
-    {name:"Mouse",description:"Lorem ipsum dolor sit amet",price:3600,categoryID:2,id:2,imageURL:"https://images.unsplash.com/photo-1515343480029-43cdfe6b6aae?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80"},
-    {name:"Usb Bellek",description:"Lorem ipsum dolor sit amet",price:2500,categoryID:1,id:1,imageURL:"https://images.unsplash.com/photo-1515343480029-43cdfe6b6aae?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80"},
-    {name:"Mp3 Çalar",description:"Lorem ipsum dolor sit amet",price:3600,categoryID:2,id:2,imageURL:"https://images.unsplash.com/photo-1515343480029-43cdfe6b6aae?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80"},
-    {name:"Usb Bellek",description:"Lorem ipsum dolor sit amet",price:2500,categoryID:1,id:1,imageURL:"https://images.unsplash.com/photo-1515343480029-43cdfe6b6aae?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80"},
-    {name:"Laptop",description:"Lorem ipsum dolor sit amet",price:2500,categoryID:1,id:1,imageURL:"https://images.unsplash.com/photo-1515343480029-43cdfe6b6aae?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80"},
-
-  ]
-  
+  products: Product[];
+  path:"http://localhost:3000/products";
 
   ngOnInit(): void {
+    this.http.get<Product[]>(this.path).subscribe(data => {
+      this.products = data
+    });
   }
 
-  AddToCart(product){
+  AddToCart(product) {
     this.alertifyService.success(product.name + " added")
   }
 
