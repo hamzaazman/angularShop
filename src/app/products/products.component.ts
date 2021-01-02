@@ -1,25 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from './product';
 import { AlertifyService } from '../services/alertify.service';
-import { HttpClient } from '@angular/common/http';
+import { ProductService } from '../services/product.service';
+
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css']
+  styleUrls: ['./products.component.css'],
+  providers:[ProductService]
 })
 export class ProductsComponent implements OnInit {
 
-  constructor(private alertifyService: AlertifyService, private http: HttpClient) { }
+  constructor(private alertifyService: AlertifyService, private productService:ProductService) { }
   title = "Ürün Listesi"
   filterText = ""
 
   products: Product[];
-  path = "http://localhost:3000/products"
 
   ngOnInit(): void {
-    this.http.get<Product[]>(this.path).subscribe(data => {
-      this.products = data
+    this.productService.getProducts().subscribe(data=>{
+      this.products = data;
     });
   }
 
