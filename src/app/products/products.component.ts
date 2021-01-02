@@ -15,7 +15,7 @@ export class ProductsComponent implements OnInit {
   filterText = ""
 
   products: Product[];
-  path:"http://localhost:3000/products";
+  path = "http://localhost:3000/products"
 
   ngOnInit(): void {
     this.http.get<Product[]>(this.path).subscribe(data => {
