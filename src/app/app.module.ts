@@ -8,6 +8,8 @@ import { ProductsComponent } from './products/products.component';
 import { NavComponent } from './nav/nav.component';
 import { CategoryComponent } from './category/category.component';
 import { ProductFilterPipe } from './products/product-filter.pipe';
+import { AppRoutingModule } from './app-routing.module';
+
 
 
 @NgModule({
@@ -21,7 +23,8 @@ import { ProductFilterPipe } from './products/product-filter.pipe';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
