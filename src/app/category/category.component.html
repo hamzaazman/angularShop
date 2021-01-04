@@ -1,7 +1,7 @@
-<h3> {{title}} </h3>
-<div class="list-group-item active">Tüm Ürünler</div>
-<div class="list-group" *ngFor="let category of categories">
-     <div class="list-group-item">
-          <a routerLink="products/category/{{category.id}}">{{category.name}}</a>
-     </div>
+<div class="list-group list-group-horizontal">
+     <nav class="list-item">
+          <a class="p-2 text-muted" routerLink="/products/">Tüm Ürünler</a>
+          <a *ngFor="let category of categories" class="p-2 text-muted"
+               routerLink="/products/category/{{category.id}}">{{category.name}}</a>
+     </nav>
 </div>
